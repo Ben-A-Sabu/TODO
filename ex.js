@@ -64,7 +64,7 @@ function addTask(task, date, where_to_add) {
     let taskElement = document.createElement('div');
     taskElement.classList.add('task');
     taskElement.innerHTML = `<div class="todo">${task}</div>
-        <div>${date}</div><button class="action" id="deletebtn">delete</button><button class="action" id="editbtn">edit</button><button class="action" id="cmpltbtn">Done</button>`;
+        <div>${date}</div><div class="action" id="deletebtn">delete</div><div class="action" id="editbtn">edit</div><div class="action" id="cmpltbtn">Done</div>`;
     taskElement.setAttribute('id', id);
     where_to_add.appendChild(taskElement);
     AddToLocalStorage(task, date, id);
@@ -141,11 +141,11 @@ function createtasktoDisplay(taskname, date, task_id, where_to_add) {
     taskElement.classList.add('task');
     if (where_to_add == completedTask) {
         taskElement.innerHTML = `<div class="todo" >${taskname}</div>
-        <div>${date}</div><button class="action" id="deletebtn">delete</button><button class="action" id="editbtn">edit</button><button class="action" id="addbackbtn">Add Back</button>`;
+        <div>${date}</div><div class="action" id="deletebtn">delete</div><div class="action" id="editbtn">edit</div><div class="action" id="addbackbtn">Add Back</div>`;
     }
     else {
         taskElement.innerHTML = `<div class="todo" >${taskname}</div>
-    <div>${date}</div><button class="action" id="deletebtn">delete</button><button class="action" id="editbtn">edit</button><button class="action" id="cmpltbtn">Done</button>`;
+    <div>${date}</div><div class="action" id="deletebtn">delete</div><div class="action" id="editbtn">edit</div><div class="action" id="cmpltbtn">Done</div>`;
     }
     taskElement.setAttribute('id', task_id);
     where_to_add.appendChild(taskElement);

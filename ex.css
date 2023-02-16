@@ -1,6 +1,6 @@
 :root {
     --bordrad: 10px;
-    --fontsize: 150%;
+    --fontsize: 130%;
     --fontwgt: bold;
     --margin: 1px;
     --bgdcolor: rgba(18, 14, 14, 0.755);
@@ -34,8 +34,10 @@ body {
 
 
 .button {
-    height: 50px;
-    width: 100px;
+    height: 5vh;
+    width: 15vw;
+    max-width: 200px;
+    max-height: 250px;
     font-weight: 200;
     box-shadow: #8fd49f 3px 3px 3px;
     border: 1px solid rgb(111, 194, 144);
@@ -43,13 +45,13 @@ body {
     font-size: clamp(1.5rem, 5vw, 2rem);
     cursor: pointer;
     border-radius: var(--bordrad);
-    text-align: center;
 }
 
 .button:hover {
-    background-color: rgba(19, 241, 178, 0.346);
-    transition: all 0.2s ease-in-out;
+    background-color: rgba(5, 70, 51, 0.839);
 }
+
+
 
 /* general css used */
 
@@ -62,6 +64,7 @@ body {
     border: 1px solid #ccc;
     height: 10vh;
     line-height: 2;
+    border-radius: var(--bordrad);
 }
 
 #homebtn {
@@ -85,7 +88,7 @@ body {
 }
 
 .Inputbox {
-    line-height: 2;
+
     font-size: var(--fontsize);
     font-weight: var(--fontwgt);
     color: #333;
@@ -171,188 +174,43 @@ body {
     border: 1px solid #ccc;
     height: 14vh;
     margin: 1px;
+    border-radius: var(--bordrad);
 }
 
 
 .count {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    font-size: var(--fontsize);
+    font-size: clamp(1rem, 1vw, .75rem);
     font-weight: var(--fontwgt);
-    color: #333;
-    border: 1px solid rgba(204, 204, 204, 0.614);
-    background-color: rgba(223, 220, 220, 0.857);
+    color: #fffbfb;
     border-radius: var(--bordrad);
-    padding: 10px;
-    width: 20vw;
+    padding: 5px;
+    max-width: 200px;
+    max-height: 250px;
 
 }
 
 .action {
-    line-height: 2;
-    font-size: var(--fontsize);
-    width: 10vw;
+    height: 4vh;
+    font-size: clamp(1rem, 1vw, 2rem);
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border: none;
-    margin-left: 5px;
+    margin-left: 1vw;
+    margin-right: 1vw;
     border-radius: var(--bordrad);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-
 }
+
 
 .action:hover {
     box-shadow: #8fd49f 3px 3px 3px;
     border: 1px solid rgb(111, 194, 144);
     background-color: rgba(22, 158, 119, 0.869);
-}
-
-
-@media screen and (max-width: 900px) and (max-height: 2500px) {
-    #header {
-        font-size: 100%;
-    }
-
-    #TaskInput {
-        font-size: 100%;
-        width: auto;
-    }
-
-    #tasklist {
-        font-size: 100%;
-        width: auto;
-    }
-
-    #footer {
-        font-size: 100%;
-        width: auto;
-    }
-
-    .Inputbox {
-        font-size: 50%;
-        width: auto;
-    }
-
-    .action {
-        font-size: 80%;
-        width: auto;
-    }
-
-    #taskHeading {
-        font-size: 150%;
-        width: auto;
-    }
-
-    .tasks {
-        font-size: 100%;
-        width: auto;
-    }
-
-    .task {
-        font-size: 80%;
-        width: auto;
-    }
-
-    .action {
-        font-size: 80%;
-        width: auto;
-    }
-
-    h3 {
-        font-size: 90%;
-    }
-
-    #homebtn {
-        right: 0.5vh;
-        top: 1vh;
-        width: 2vh;
-        height: 2vh;
-        border-radius: 50px;
-    }
-}
-
-@media screen and (max-height: 700px) {
-    #header {
-        font-size: 50%;
-    }
-
-    #TaskInput {
-        font-size: 100%;
-        width: auto;
-    }
-
-    #tasklist {
-        font-size: 100%;
-        width: auto;
-    }
-
-    #footer {
-        font-size: 100%;
-        width: auto;
-    }
-
-    .Inputbox {
-        font-size: 50%;
-        width: 15vw;
-    }
-
-    .action {
-        font-size: 50%;
-        width: auto;
-    }
-
-    #taskHeading {
-        font-size: 50%;
-        width: auto;
-    }
-
-    .tasks {
-        font-size: 50%;
-        width: auto;
-    }
-
-    #today h3 {
-        font-size: 50%;
-    }
-
-    #upcoming h3 {
-        font-size: 50%;
-    }
-
-    #Missed h3 {
-        font-size: 50%;
-    }
-
-    #completed h3 {
-        font-size: 50%;
-    }
-
-    .task {
-        font-size: 50%;
-        width: auto;
-    }
-
-    .action {
-        font-size: 80%;
-        width: auto;
-    }
-
-    h3 {
-        font-size: 50%;
-    }
-
-    #homebtn {
-        right: 0.5vh;
-        top: 1vh;
-        width: 2vh;
-        height: 2vh;
-        border-radius: 50px;
-    }
-}
-
-@media screen and (max-height: 400px) {
-    #footer {
-        display: none;
-    }
 }
