@@ -1,75 +1,67 @@
+:root {
+    --bordrad: 10px;
+    --fontsize: 150%;
+    --fontwgt: bold;
+    --margin: 1px;
+    --bgdcolor: rgba(18, 14, 14, 0.755);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* general css used */
+
+body {
+    overscroll-behavior: none;
+    user-select: none;
+    height: 100vh;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.button {
+    height: 50px;
+    width: 100px;
+    font-weight: 200;
+    box-shadow: #8fd49f 3px 3px 3px;
+    border: 1px solid rgb(111, 194, 144);
+    background-color: rgba(22, 158, 119, 0.869);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    cursor: pointer;
+    border-radius: var(--bordrad);
+    text-align: center;
+}
+
+.button:hover {
+    background-color: rgba(19, 241, 178, 0.346);
+    transition: all 0.2s ease-in-out;
+}
+
+/* general css used */
 
 #header {
-    background-color: #77be88b9;
+    background-color: var(--bgdcolor);
     text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
+    font-size: var(--fontsize);
+    font-weight: var(--fontwgt);
+    color: #fbf4f4;
     border: 1px solid #ccc;
-    width: 100vw;
     height: 10vh;
     line-height: 2;
-}
-
-#TaskInput {
-    width: 100vw;
-    height: 10vh;
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    border: 1px solid #ccc;
-    background-color: rgba(250, 235, 215, 0.503);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 1vh;
-}
-
-#tasklist {
-    width: 100vw;
-    height: 65vh;
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    border: 1px solid #ccc;
-    /* background-color: rgba(250, 241, 215, 0.467);*/
-    background-image: url("backgrd.webp");
-    margin-top: 1vh;
-}
-
-#footer {
-    background-color: #77be88b9;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    border: 1px solid #ccc;
-    width: 100vw;
-    height: 12vh;
-    line-height: 2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.Inputbox {
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    border: 1px solid rgba(204, 204, 204, 0.614);
-    background-color: rgba(223, 220, 220, 0.857);
-    border-radius: 5px;
 }
 
 #homebtn {
@@ -83,211 +75,194 @@
     top: 1vh;
 }
 
-.Submitbtn {
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    width: 10vw;
-    color: #333;
-    border: 1px solid rgba(44, 209, 41, 0.831);
-    background-color: rgba(75, 187, 37, 0.857);
-    border-radius: 5px;
-    cursor: pointer;
+#TaskInput {
+    height: 10vh;
+    background-color: var(--bgdcolor);
+    margin: 1px;
+    text-align: center;
+    border-radius: var(--bordrad);
+
 }
 
-.Submitbtn:hover {
-    background-color: rgb(66, 110, 51);
-    color: #fff;
+.Inputbox {
+    line-height: 2;
+    font-size: var(--fontsize);
+    font-weight: var(--fontwgt);
+    color: #333;
+    border: 1px solid rgba(204, 204, 204, 0.614);
+    background-color: rgba(223, 220, 220, 0.857);
+    border-radius: var(--bordrad);
+    padding: 10px;
+    width: 20vw;
+
+}
+
+#tasklist {
+    height: 65vh;
+    border: 1px solid #ccc;
+    background-color: var(--bgdcolor);
+    margin: 1px;
 }
 
 #taskHeading {
     font-size: 150%;
-    font-weight: bold;
-    color: #333;
-    background-color: rgba(190, 145, 130, 0.529);
-    border-radius: 5px;
-    width: 100vw;
+    font-weight: var(--fontwgt);
+    color: #f0eded;
+    background-color: rgba(7, 7, 7, 0.859);
     text-align: center;
     line-height: 2;
+    border-radius: var(--bordrad);
 }
 
-.tasks {
-    width: 100vw;
-    height: 10vh;
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: var(--fontwgt);
+    border-radius: var(--bordrad);
+    background-color: rgba(5, 4, 4, 0.219);
+    margin: 1vh;
+}
+
+.task>div {
+    flex: 1;
+    color: #f9f5f5;
+}
+
+.todo {
+    font-size: 100%;
+    padding: 10px;
 }
 
 #today h3,
-#Missed h3 {
-    font-size: 150%;
-    font-weight: bold;
-    color: #333;
-    background-color: rgba(196, 119, 119, 0.399);
-    border-radius: 5px;
-    width: 100vw;
-    text-align: center;
-    line-height: 2;
-    margin-top: 1vh;
-}
-
+#Missed h3,
 #upcoming h3,
 #completed h3 {
     font-size: 150%;
-    font-weight: bold;
-    color: #333;
-    background-color: rgba(196, 119, 119, 0.399);
-    border-radius: 5px;
-    width: 100vw;
+    font-weight: var(--fontwgt);
+    color: #f8f6f6;
+    background-color: rgba(14, 13, 13, 0.855);
     text-align: center;
     line-height: 2;
-    margin-top: 1vh;
+    margin: 1vh;
+    border-radius: var(--bordrad);
 }
 
-#today {
-    height: 30vh;
-    overflow: auto;
-}
-
-#upcoming {
+#today,
+#upcoming,
+#Missed,
+#completed {
     height: 30vh;
     overflow: auto;
 }
 
 #Missed {
-    height: 30vh;
-    overflow: auto;
     display: none;
 }
 
 #completed {
-    height: 30vh;
-    overflow: auto;
     display: none;
 }
 
-.task,
-.upcomming_task {
-    width: 100vw;
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    background-color: rgba(70, 68, 68, 0.219);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 1vh;
+#footer {
+    background-color: var(--bgdcolor);
+    text-align: center;
+    border: 1px solid #ccc;
+    height: 14vh;
+    margin: 1px;
 }
 
-.Mtask,
-.Ctask {
-    width: 100vw;
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    background-color: rgba(70, 68, 68, 0.219);
+
+.count {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 1vh;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fontsize);
+    font-weight: var(--fontwgt);
+    color: #333;
+    border: 1px solid rgba(204, 204, 204, 0.614);
+    background-color: rgba(223, 220, 220, 0.857);
+    border-radius: var(--bordrad);
+    padding: 10px;
+    width: 20vw;
+
 }
 
 .action {
     line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: var(--fontsize);
     width: 10vw;
-    background-color: inherit;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     border: none;
-    border-radius: 5px;
+    margin-left: 5px;
+    border-radius: var(--bordrad);
     cursor: pointer;
+
 }
 
 .action:hover {
-    background-color: rgb(66, 110, 51);
-    color: #fff;
+    box-shadow: #8fd49f 3px 3px 3px;
+    border: 1px solid rgb(111, 194, 144);
+    background-color: rgba(22, 158, 119, 0.869);
 }
 
-.display {
-    line-height: 2;
-    font-size: 20px;
-    font-weight: bold;
-    width: 10vw;
-    background-color: rgba(87, 152, 66, 0.255);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.display:hover {
-    background-color: rgb(66, 110, 51);
-    color: #fff;
-}
-
-@media screen and (max-width: 600px) and (max-height: 2500px) {
+@media screen and (max-width: 900px) and (max-height: 2500px) {
     #header {
         font-size: 100%;
     }
+
     #TaskInput {
         font-size: 100%;
         width: auto;
     }
+
     #tasklist {
         font-size: 100%;
         width: auto;
     }
+
     #footer {
         font-size: 100%;
         width: auto;
     }
+
     .Inputbox {
         font-size: 50%;
-        width: 15vw;
-    }
-    .Submitbtn,
-    .action,
-    .display {
-        font-size: 80%;
         width: auto;
     }
-    #taskHeading {
-        font-size: 150%;
-        width: auto;
-    }
-    .tasks {
-        font-size: 100%;
-        width: auto;
-    }
-    #today h3 {
-        font-size: 150%;
-    }
-    #upcoming h3 {
-        font-size: 150%;
-    }
-    #Missed h3 {
-        font-size: 150%;
-    }
-    #completed h3 {
-        font-size: 150%;
-    }
-    .task,
-    .upcomming_task,
-    .Mtask,
-    .Ctask {
-        font-size: 80%;
-        width: auto;
-    }
+
     .action {
         font-size: 80%;
         width: auto;
     }
+
+    #taskHeading {
+        font-size: 150%;
+        width: auto;
+    }
+
+    .tasks {
+        font-size: 100%;
+        width: auto;
+    }
+
+    .task {
+        font-size: 80%;
+        width: auto;
+    }
+
+    .action {
+        font-size: 80%;
+        width: auto;
+    }
+
     h3 {
         font-size: 90%;
     }
+
     #homebtn {
         right: 0.5vh;
         top: 1vh;
@@ -301,62 +276,72 @@
     #header {
         font-size: 50%;
     }
+
     #TaskInput {
         font-size: 100%;
         width: auto;
     }
+
     #tasklist {
         font-size: 100%;
         width: auto;
     }
+
     #footer {
         font-size: 100%;
         width: auto;
     }
+
     .Inputbox {
         font-size: 50%;
         width: 15vw;
     }
-    .Submitbtn,
-    .action,
-    .display {
+
+    .action {
         font-size: 50%;
         width: auto;
     }
+
     #taskHeading {
         font-size: 50%;
         width: auto;
     }
+
     .tasks {
         font-size: 50%;
         width: auto;
     }
+
     #today h3 {
         font-size: 50%;
     }
+
     #upcoming h3 {
         font-size: 50%;
     }
+
     #Missed h3 {
         font-size: 50%;
     }
+
     #completed h3 {
         font-size: 50%;
     }
-    .task,
-    .upcomming_task,
-    .Mtask,
-    .Ctask {
+
+    .task {
         font-size: 50%;
         width: auto;
     }
+
     .action {
         font-size: 80%;
         width: auto;
     }
+
     h3 {
         font-size: 50%;
     }
+
     #homebtn {
         right: 0.5vh;
         top: 1vh;

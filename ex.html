@@ -15,50 +15,41 @@
         <h1 id="MainHeading">Todo</h1>
         <input type="image" src="homebtn.webp" name="homebtn" id="homebtn" alt="submit" label="homebtnimage" />
     </div>
-
-    <div id="TaskInput">
+    <div id="TaskInput" class="row">
         <input type="text" class="Inputbox" id="taskEnter" name="taskinput" alt="textbox" label="textinput" />
         <input type="date" class="Inputbox" id="TaskDate" name="taskdate" alt="datebox" label="dateinput" />
-        <button class="Submitbtn" id="Addbtn">Add</button>
-        <button class="Submitbtn" id="Clearbtn">Clear</button>
+        <div class="button" id="Addbtn">Add</div>
+        <div class="button" id="Clearbtn">Clear</div>
     </div>
-
     <div id="tasklist">
         <h2 id="taskHeading">Tasks</h2>
         <div class="tasks">
             <div id="today">
                 <h3>Today</h3>
-                <div class="task"></div>
             </div>
             <div id="upcoming">
-                <h3>upcoming</h3>
-                <div class="upcomming_task"></div>
+                <h3>Upcoming</h3>
             </div>
             <div id="Missed">
-                <h3>Missed Task</h3>
-                <div class="Mtask"></div>
+                <h3>Missed</h3>
             </div>
             <div id="completed">
-                <h3>completed Task</h3>
-                <div class="Ctask"></div>
+                <h3>Finished</h3>
             </div>
         </div>
     </div>
-    <div id="footer">
+    <div id="footer" class="row">
         <div class="count">
             <h3 id="pending"><b>Missed Task:</b> 56</h3>
-
-            <button class="display" id="view_miss_task">View</button>
+            <div class="button" id="view_miss_task">View</div>
         </div>
-
         <div class="count">
             <h3 id="tocomplete"><b>Current Task: </b> 56</h3>
-            <button class="display" id="view_current_task">View</button>
+            <div class="button" id="view_current_task">View</div>
         </div>
-
         <div class="count">
             <h3 id="completedtask"><b>Completed Task:</b> 56</h3>
-            <button class="display" id="view_comp_task">View</button>
+            <div class="button" id="view_comp_task">View</div>
         </div>
     </div>
     <script src="ex.js"></script>
