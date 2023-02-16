@@ -1,0 +1,373 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#header {
+    background-color: #77be88b9;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    width: 100vw;
+    height: 10vh;
+    line-height: 2;
+}
+
+#TaskInput {
+    width: 100vw;
+    height: 10vh;
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    background-color: rgba(250, 235, 215, 0.503);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1vh;
+}
+
+#tasklist {
+    width: 100vw;
+    height: 65vh;
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    /* background-color: rgba(250, 241, 215, 0.467);*/
+    background-image: url("backgrd.webp");
+    margin-top: 1vh;
+}
+
+#footer {
+    background-color: #77be88b9;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    width: 100vw;
+    height: 12vh;
+    line-height: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Inputbox {
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid rgba(204, 204, 204, 0.614);
+    background-color: rgba(223, 220, 220, 0.857);
+    border-radius: 5px;
+}
+
+#homebtn {
+    height: 4vh;
+    width: 4vh;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    right: 1vh;
+    top: 1vh;
+}
+
+.Submitbtn {
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    width: 10vw;
+    color: #333;
+    border: 1px solid rgba(44, 209, 41, 0.831);
+    background-color: rgba(75, 187, 37, 0.857);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Submitbtn:hover {
+    background-color: rgb(66, 110, 51);
+    color: #fff;
+}
+
+#taskHeading {
+    font-size: 150%;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(190, 145, 130, 0.529);
+    border-radius: 5px;
+    width: 100vw;
+    text-align: center;
+    line-height: 2;
+}
+
+.tasks {
+    width: 100vw;
+    height: 10vh;
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+#today h3,
+#Missed h3 {
+    font-size: 150%;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(196, 119, 119, 0.399);
+    border-radius: 5px;
+    width: 100vw;
+    text-align: center;
+    line-height: 2;
+    margin-top: 1vh;
+}
+
+#upcoming h3,
+#completed h3 {
+    font-size: 150%;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(196, 119, 119, 0.399);
+    border-radius: 5px;
+    width: 100vw;
+    text-align: center;
+    line-height: 2;
+    margin-top: 1vh;
+}
+
+#today {
+    height: 30vh;
+    overflow: auto;
+}
+
+#upcoming {
+    height: 30vh;
+    overflow: auto;
+}
+
+#Missed {
+    height: 30vh;
+    overflow: auto;
+    display: none;
+}
+
+#completed {
+    height: 30vh;
+    overflow: auto;
+    display: none;
+}
+
+.task,
+.upcomming_task {
+    width: 100vw;
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(70, 68, 68, 0.219);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1vh;
+}
+
+.Mtask,
+.Ctask {
+    width: 100vw;
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(70, 68, 68, 0.219);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1vh;
+}
+
+.action {
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    width: 10vw;
+    background-color: inherit;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.action:hover {
+    background-color: rgb(66, 110, 51);
+    color: #fff;
+}
+
+.display {
+    line-height: 2;
+    font-size: 20px;
+    font-weight: bold;
+    width: 10vw;
+    background-color: rgba(87, 152, 66, 0.255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.display:hover {
+    background-color: rgb(66, 110, 51);
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) and (max-height: 2500px) {
+    #header {
+        font-size: 100%;
+    }
+    #TaskInput {
+        font-size: 100%;
+        width: auto;
+    }
+    #tasklist {
+        font-size: 100%;
+        width: auto;
+    }
+    #footer {
+        font-size: 100%;
+        width: auto;
+    }
+    .Inputbox {
+        font-size: 50%;
+        width: 15vw;
+    }
+    .Submitbtn,
+    .action,
+    .display {
+        font-size: 80%;
+        width: auto;
+    }
+    #taskHeading {
+        font-size: 150%;
+        width: auto;
+    }
+    .tasks {
+        font-size: 100%;
+        width: auto;
+    }
+    #today h3 {
+        font-size: 150%;
+    }
+    #upcoming h3 {
+        font-size: 150%;
+    }
+    #Missed h3 {
+        font-size: 150%;
+    }
+    #completed h3 {
+        font-size: 150%;
+    }
+    .task,
+    .upcomming_task,
+    .Mtask,
+    .Ctask {
+        font-size: 80%;
+        width: auto;
+    }
+    .action {
+        font-size: 80%;
+        width: auto;
+    }
+    h3 {
+        font-size: 90%;
+    }
+    #homebtn {
+        right: 0.5vh;
+        top: 1vh;
+        width: 2vh;
+        height: 2vh;
+        border-radius: 50px;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    #header {
+        font-size: 50%;
+    }
+    #TaskInput {
+        font-size: 100%;
+        width: auto;
+    }
+    #tasklist {
+        font-size: 100%;
+        width: auto;
+    }
+    #footer {
+        font-size: 100%;
+        width: auto;
+    }
+    .Inputbox {
+        font-size: 50%;
+        width: 15vw;
+    }
+    .Submitbtn,
+    .action,
+    .display {
+        font-size: 50%;
+        width: auto;
+    }
+    #taskHeading {
+        font-size: 50%;
+        width: auto;
+    }
+    .tasks {
+        font-size: 50%;
+        width: auto;
+    }
+    #today h3 {
+        font-size: 50%;
+    }
+    #upcoming h3 {
+        font-size: 50%;
+    }
+    #Missed h3 {
+        font-size: 50%;
+    }
+    #completed h3 {
+        font-size: 50%;
+    }
+    .task,
+    .upcomming_task,
+    .Mtask,
+    .Ctask {
+        font-size: 50%;
+        width: auto;
+    }
+    .action {
+        font-size: 80%;
+        width: auto;
+    }
+    h3 {
+        font-size: 50%;
+    }
+    #homebtn {
+        right: 0.5vh;
+        top: 1vh;
+        width: 2vh;
+        height: 2vh;
+        border-radius: 50px;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    #footer {
+        display: none;
+    }
+}

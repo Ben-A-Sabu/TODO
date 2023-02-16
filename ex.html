@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <link rel="stylesheet" href="ex.css" />
+    <meta name="description" content="A simple todoapp" />
+</head>
+
+<body>
+    <div id="header">
+        <h1 id="MainHeading">Todo</h1>
+        <input type="image" src="homebtn.webp" name="homebtn" id="homebtn" alt="submit" label="homebtnimage" />
+    </div>
+
+    <div id="TaskInput">
+        <input type="text" class="Inputbox" id="taskEnter" name="taskinput" alt="textbox" label="textinput" />
+        <input type="date" class="Inputbox" id="TaskDate" name="taskdate" alt="datebox" label="dateinput" />
+        <button class="Submitbtn" id="Addbtn">Add</button>
+        <button class="Submitbtn" id="Clearbtn">Clear</button>
+    </div>
+
+    <div id="tasklist">
+        <h2 id="taskHeading">Tasks</h2>
+        <div class="tasks">
+            <div id="today">
+                <h3>Today</h3>
+                <div class="task"></div>
+            </div>
+            <div id="upcoming">
+                <h3>upcoming</h3>
+                <div class="upcomming_task"></div>
+            </div>
+            <div id="Missed">
+                <h3>Missed Task</h3>
+                <div class="Mtask"></div>
+            </div>
+            <div id="completed">
+                <h3>completed Task</h3>
+                <div class="Ctask"></div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="count">
+            <h3 id="pending"><b>Missed Task:</b> 56</h3>
+
+            <button class="display" id="view_miss_task">View</button>
+        </div>
+
+        <div class="count">
+            <h3 id="tocomplete"><b>Current Task: </b> 56</h3>
+            <button class="display" id="view_current_task">View</button>
+        </div>
+
+        <div class="count">
+            <h3 id="completedtask"><b>Completed Task:</b> 56</h3>
+            <button class="display" id="view_comp_task">View</button>
+        </div>
+    </div>
+    <script src="ex.js"></script>
+</body>
+
+</html>
