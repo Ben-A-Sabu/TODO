@@ -136,12 +136,7 @@ document.addEventListener('click', function (e) {
                 RemoveFromLocalStorage(elementid);
             }
             if (e.target.id === 'editbtn') {
-                let editTask = prompt('Edit Task');
-                let editDate = prompt('Edit Date' + '(' + 'YYYY-MM-DD' + ')');
-                var value = validate_edited_task(editTask, editDate);
-                if (value == true) {
-                    editFromLocalStorage(editTask, editDate, elementid);
-                }
+                editpopup(elementid);
             }
             if (e.target.id === 'cmpltbtn') {
                 updateStatus(elementid, 'completed');
@@ -149,6 +144,7 @@ document.addEventListener('click', function (e) {
             if (e.target.id == 'addbackbtn') {
                 updateStatus(elementid, 'notdone');
             }
+
         });
     }
 
@@ -251,8 +247,11 @@ function validate_edited_task(task, date) {
         Errorpopup.style.display = 'flex';
         blur();
         ErrorMsg.innerHTML = 'Please fill all the fields';
+        document.getElementById('Errorpopup').style.display = 'flex';
+        document.getElementById('Editpopup').style.display = 'none';
         return false;
     } else if (currentdate == date || new Date().getTime() < new Date(date).getTime()) {
+        document.getElementById('Editpopup').style.display = 'none';
         return true;
     }
     else {
@@ -311,7 +310,8 @@ function updateNotification() {
 
 
 document.getElementById('yes').addEventListener("click", function () {
-    Errorpopup.style.display = 'none';
+    document.getElementById('Errorpopup').style.display = 'none';
+    document.getElementById('Editpopup').style.display = 'flex';
     blur();
     ErrorMsg.innerHTML = '';
 
@@ -320,7 +320,7 @@ document.getElementById('yes').addEventListener("click", function () {
 
 
 function blur() {
-    if (Errorpopup.style.display == 'flex') {
+    if (Errorpopup.style.display == 'flex' || document.getElementById('Editpopup').style.display == 'flex') {
         TaskList.classList.add('blur');
         document.getElementById('header').classList.add('blur');
         document.getElementById('footer').classList.add('blur');
@@ -333,3 +333,22 @@ function blur() {
         document.getElementById('TaskInput').classList.remove('blur');
     }
 }
+
+/// popup that perform editing the task 
+function editpopup(elementid) {
+    document.getElementById('Editpopup').style.display = 'flex';
+    blur();
+    document.getElementById('Reject').addEventListener("click", function () {
+        document.getElementById('Editpopup').style.display = 'none';
+        blur();
+    })
+
+    document.getElementById('confirm').addEventListener("click", function () {
+        let task = document.getElementById('EditedTask').value;
+        let date = document.getElementById('EditedTaskDate').value;
+        if (validate_edited_task(task, date)) {
+            editFromLocalStorage(task, date, elementid);
+        }
+    })
+}
+

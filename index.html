@@ -9,11 +9,13 @@
     <meta name="description" content="A simple todoapp" />
 </head>
 <body>
+<!-- ------------------------Header------------------------------>
     <div id="header" class="row" >
         <input type="image" src="homebtn.webp" name="homebtn" id="homebtn" alt="Home" label="homebtnimage" class="button" />
         <h1 id="MainHeading" class="Heading">Todo</h1>
         <div id="infobtn" class="row button">i</div>
     </div>
+<!-- ------------------------Taskinput part ------------------------------>    
     <div id="TaskInput"  class="row">
         <div id="ipbox" class="row">
         <input type="text" class="Inputbox" id="taskEnter" placeholder="Task" name="taskinput" alt="textbox" label="textinput" />
@@ -24,8 +26,9 @@
         <div class="button" id="Clearbtn">Clear</div>
     </div>
 </div>
+<!-- ------------------------Popup part ------------------------------>
 <div id="popupbody">
-<div id="Errorpopup" >
+<div id="Errorpopup" class="popup" >
     <h2 id="Message" id="Heading">Message</h2>
     <div id="ErrorMsg">
     </div>
@@ -33,7 +36,20 @@
     <div class="button" id="yes">Okay</div>
   </div>
   </div>
+    <div id="Editpopup" class="popup" >
+        <h2 id="EditHd" id="Heading">Edit</h2>
+        <div id="EditInput">
+            <input type="text" class="Inputbox" id="EditedTask" placeholder="Task" name="taskinput" alt="textbox" label="textinput" />
+            <input type="date" class="Inputbox" id="EditedTaskDate" name="taskdate" alt="datebox" label="dateinput" />
+        </div>
+        <div id="Editbtn" class="row">
+            <div class="button" id="confirm">Yes</div>
+            <div class="button" id="Reject">No</div>
+      </div>
+      </div>
 </div>
+
+<!-- ------------------------Tasklist part ------------------------------>
     <div id="tasklist">
             <div id="today">
                 <h3 class="Heading">Today</h3>
@@ -52,6 +68,7 @@
                 <div class="container" id="cmp_container"></div>
             </div>
     </div>
+<!-- ------------------------Footer part ------------------------------>    
     <div id="footer" class="row">
         <div class="count">
             <div class="button" id="view_miss_task">
@@ -69,8 +86,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script src="index.js"></script>
 </body>
