@@ -1,4 +1,7 @@
 const homebtn = document.querySelector('#homebtn');
+const Errorpopup = document.getElementById('Errorpopup')
+const ErrorMsg = document.getElementById('ErrorMsg');
+const TaskList = document.getElementById('tasklist');
 ///////////////////////////////////////////////////////////////////////
 const Inputbox = document.querySelector('#taskEnter');
 const Taskdate = document.querySelector('#TaskDate');
@@ -6,14 +9,19 @@ const Addbtn = document.querySelector('#Addbtn');
 const Clearbtn = document.querySelector('#Clearbtn');
 ///////////////////////////////////////////////////////////////////////
 const tasks = document.querySelector('.tasks');
+//const container = document.querySelector('.container');
 ///////////////////////// current task elements ///////////////////////////////////////////
 const today = document.querySelector('#today');
+const today_container = document.querySelector('#crrnt_container');
 //////////////////// upcoming task element /////////////////////////////////////////////////
 const upcoming = document.querySelector('#upcoming');
+const upcoming_container = document.querySelector('#upcmg_container');
 ///////////////////////completed task elements ///////////////////////////////////////////
 const completedTask = document.querySelector('#completed');
+const completed_container = document.querySelector('#cmp_container');
 ////////////////////////missed task elements ////////////////////////////////////////////
 const Missed = document.querySelector('#Missed');
+const Missed_container = document.querySelector('#miss_container');
 /////////////////////// footer btn elements /////////////////////////////////////////////
 const viewMisedTasks = document.querySelector('#view_miss_task');
 const viewCompletedTasks = document.querySelector('#view_comp_task');
@@ -27,7 +35,7 @@ var lastId = 0;
 window.addEventListener('load', function () {
 
     homebtn.addEventListener('click', function () {
-        window.location.href = "ex.html";
+        window.location.href = "index.html";
     });
     Clearbtn.addEventListener('click', function () {
         Inputbox.value = '';
@@ -40,6 +48,7 @@ window.addEventListener('load', function () {
         veiw_and_Hide_Area(today, upcoming, Missed, completedTask);
     });
     viewCurrentTasks.addEventListener('click', function () {
+        today.style.height = '60vh';
         veiw_and_Hide_Area(Missed, upcoming, completedTask, today);
     });
 
@@ -48,6 +57,7 @@ window.addEventListener('load', function () {
     displayFromLocalStorage();
     findcurrentdate();
     updateNotification();
+    Taskdate.value = currentdate;
 
 });
 
@@ -60,17 +70,32 @@ function findcurrentdate() {
     }
 }
 /// function to add task on to screen
-function addTask(task, date, where_to_add) {
+// Declare a variable to hold a reference to the Edit_bar element
+function addTask(task, date, container, where_to_add) {
     let taskElement = document.createElement('div');
     taskElement.classList.add('task');
-    taskElement.innerHTML = `<div class="todo">${task}</div>
-        <div>${date}</div><div class="action" id="deletebtn">delete</div><div class="action" id="editbtn">edit</div><div class="action" id="cmpltbtn">Done</div>`;
+    taskElement.innerHTML = `
+    <div class="todo"><div>${task}</div>
+    <div>${date}</div></div>
+    <div class="menu">
+      <div class="menu-icon" id="Edit_bar">...</div>
+      <div class="menu-actions hidden">
+        <div class="action" id="deletebtn">delete</div>
+        <div class="action" id="editbtn">edit</div>
+        <div class="action" id="cmpltbtn">Done</div>
+      </div>
+    </div>
+  `;
     taskElement.setAttribute('id', id);
-    where_to_add.appendChild(taskElement);
+    container.appendChild(taskElement);
+    where_to_add.appendChild(container);
     AddToLocalStorage(task, date, id);
+    updateNotification();
     updateid();
-
 }
+
+// Access the Edit_bar element outside the function
+
 // function to provide unique id for each task
 function updateid() {
     id++;
@@ -86,40 +111,45 @@ Addbtn.addEventListener('click', function () {
     if (task === '' || date === '') {
         alert('Please enter a task and date');
     } else if (currentdate === date) {
-        addTask(task, date, today);
+        addTask(task, date, today_container, today);
 
     } else if (new Date().getTime() < new Date(date).getTime()) {
-        addTask(task, date, upcoming);
+        addTask(task, date, upcoming_container, upcoming);
     } else {
         alert('Please enter a valid date');
     }
     Inputbox.value = '';
-    Taskdate.value = '';
-
+    Taskdate.value = currentdate;
 });
 /// action that can be performed (ie, edit, delete, complete)
-tasks.addEventListener('click', function (e) {
-    if (e.target.id === 'deletebtn') {
-        RemoveFromLocalStorage(e.target.parentElement.id);
-        displayFromLocalStorage();
-        updateNotification();
-    }
-    if (e.target.id === 'editbtn') {
-        let editTask = prompt('Edit Task');
-        let editDate = prompt('Edit Date' + '(' + 'YYYY-MM-DD' + ')');
-        var value = validate_edited_task(editTask, editDate);
-        if (value == true) {
-            editFromLocalStorage(editTask, editDate, e.target.parentElement.id);
-            location.reload();
-        }
-    }
-    if (e.target.id === 'cmpltbtn') {
-        updateStatus(e.target.parentElement.id, 'completed');
-        location.reload();
-    }
-    if (e.target.id == 'addbackbtn') {
-        updateStatus(e.target.parentElement.id, 'notdone');
-        location.reload();
+document.addEventListener('click', function (e) {
+    // Get a reference to the menu-icon element
+    const menuIcon = e.target;
+    // Get a reference to the menu-actions element
+    const menuActions = menuIcon.parentNode.querySelector('.menu-actions');
+    if (menuActions) {
+        // Toggle the hidden class on the menu-actions element
+        menuActions.classList.toggle('hidden');
+        menuActions.addEventListener('click', function (e) {
+            elementid = e.target.parentElement.parentElement.parentElement.id
+            if (e.target.id === 'deletebtn') {
+                RemoveFromLocalStorage(elementid);
+            }
+            if (e.target.id === 'editbtn') {
+                let editTask = prompt('Edit Task');
+                let editDate = prompt('Edit Date' + '(' + 'YYYY-MM-DD' + ')');
+                var value = validate_edited_task(editTask, editDate);
+                if (value == true) {
+                    editFromLocalStorage(editTask, editDate, elementid);
+                }
+            }
+            if (e.target.id === 'cmpltbtn') {
+                updateStatus(elementid, 'completed');
+            }
+            if (e.target.id == 'addbackbtn') {
+                updateStatus(elementid, 'notdone');
+            }
+        });
     }
 
 });
@@ -136,19 +166,40 @@ function AddToLocalStorage(task, date, id) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 // function to create task element from local storage
-function createtasktoDisplay(taskname, date, task_id, where_to_add) {
+function createtasktoDisplay(taskname, date, task_id, container, where_to_add) {
     let taskElement = document.createElement('div');
     taskElement.classList.add('task');
     if (where_to_add == completedTask) {
-        taskElement.innerHTML = `<div class="todo" >${taskname}</div>
-        <div>${date}</div><div class="action" id="deletebtn">delete</div><div class="action" id="editbtn">edit</div><div class="action" id="addbackbtn">Add Back</div>`;
+        taskElement.innerHTML = `
+    <div class="todo"><div>${taskname}</div>
+    <div>${date}</div></div>
+    <div class="menu">
+      <div class="menu-icon" id="Edit_bar">...</div>
+      <div class="menu-actions hidden">
+        <div class="action" id="deletebtn">delete</div>
+        <div class="action" id="editbtn">edit</div>
+        <div class="action" id="addbackbtn">undo</div>
+      </div>
+    </div>
+  `;
     }
     else {
-        taskElement.innerHTML = `<div class="todo" >${taskname}</div>
-    <div>${date}</div><div class="action" id="deletebtn">delete</div><div class="action" id="editbtn">edit</div><div class="action" id="cmpltbtn">Done</div>`;
+        taskElement.innerHTML = `
+    <div class="todo"><div>${taskname}</div>
+    <div>${date}</div></div>
+    <div class="menu">
+      <div class="menu-icon" id="Edit_bar">...</div>
+      <div class="menu-actions hidden">
+        <div class="action" id="deletebtn">delete</div>
+        <div class="action" id="editbtn">edit</div>
+        <div class="action" id="cmpltbtn">Done</div>
+      </div>
+    </div>
+  `;
     }
     taskElement.setAttribute('id', task_id);
-    where_to_add.appendChild(taskElement);
+    container.appendChild(taskElement);
+    where_to_add.appendChild(container);
 }
 //display from  local storage function
 function displayFromLocalStorage() {
@@ -157,15 +208,14 @@ function displayFromLocalStorage() {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
     tasks.forEach(function (task) {
-
-        if (new Date().getTime() < new Date(task.date).getTime() && task.taskstatus == 'notdone') {
-            createtasktoDisplay(task.task, task.date, task.id, upcoming);
+        if (new Date().getTime() < new Date(task.date).getTime() && task.taskstatus == 'notdone' && currentdate != task.date) {
+            createtasktoDisplay(task.task, task.date, task.id, upcoming_container, upcoming);
         } else if (currentdate == task.date && task.taskstatus == 'notdone') {
-            createtasktoDisplay(task.task, task.date, task.id, today);
+            createtasktoDisplay(task.task, task.date, task.id, today_container, today);
         } else if (new Date().getTime() > new Date(task.date).getTime() && task.taskstatus == 'notdone' && currentdate != task.date) {
-            createtasktoDisplay(task.task, task.date, task.id, Missed);
+            createtasktoDisplay(task.task, task.date, task.id, Missed_container, Missed);
         } else if (task.taskstatus == 'completed' && (new Date().getTime() < new Date(task.date).getTime() || currentdate == task.date)) {
-            createtasktoDisplay(task.task, task.date, task.id, completedTask);
+            createtasktoDisplay(task.task, task.date, task.id, completed_container, completedTask);
         } else {
             RemoveFromLocalStorage(task.id);
         }
@@ -175,7 +225,6 @@ function displayFromLocalStorage() {
 // edit from local storage function
 function editFromLocalStorage(task, date, id) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].id == id) {
             tasks[i].task = task;
@@ -190,24 +239,26 @@ function RemoveFromLocalStorage(id) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].id == id) {
-            console.log(id)
-            console.log(tasks[i].id)
             tasks.splice(i, 1);
         }
     }
     localStorage.setItem('tasks', JSON.stringify(tasks));
-
+    location.reload();
 }
 // validate_edited info function
 function validate_edited_task(task, date) {
     if (task == '' || date == '') {
-        alert('Please enter a valid task and date');
+        Errorpopup.style.display = 'flex';
+        blur();
+        ErrorMsg.innerHTML = 'Please fill all the fields';
         return false;
     } else if (currentdate == date || new Date().getTime() < new Date(date).getTime()) {
         return true;
     }
     else {
-        alert('Please enter a valid date');
+        Errorpopup.style.display = 'flex';
+        blur();
+        ErrorMsg.innerHTML = 'Please enter date in the format YYYY-MM-DD';
         return false;
     }
 }
@@ -221,6 +272,7 @@ function updateStatus(id, status) {
         }
     }
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    location.reload();
 }
 // veiew_and_Hide_Area function
 function veiw_and_Hide_Area(area1, area2, area3, area4) {
@@ -228,6 +280,7 @@ function veiw_and_Hide_Area(area1, area2, area3, area4) {
     area2.style.display = 'none';
     area3.style.display = 'none';
     area4.style.display = 'block';
+
 }
 ///  function updates number of task missed,completed, todo
 function updateNotification() {
@@ -251,9 +304,32 @@ function updateNotification() {
     count_completed_tasks = document.querySelector('#completedtask');
     count_missed_tasks = document.querySelector('#pending');
     count_current_tasks = document.querySelector('#tocomplete');
-    count_completed_tasks.innerText = "Completed Task:" + No_of_task_completed;
-    count_missed_tasks.innerText = "Missed Task:" + No_of_task_missed;
-    count_current_tasks.innerText = "Current Task:" + No_of_task_todo;
+    count_completed_tasks.innerHTML = "Finished:" + No_of_task_completed + "<br>view";
+    count_missed_tasks.innerHTML = "Missed :" + No_of_task_missed + "<br>view";
+    count_current_tasks.innerHTML = "Today :" + No_of_task_todo + "<br>view";
 }
 
 
+document.getElementById('yes').addEventListener("click", function () {
+    Errorpopup.style.display = 'none';
+    blur();
+    ErrorMsg.innerHTML = '';
+
+
+})
+
+
+function blur() {
+    if (Errorpopup.style.display == 'flex') {
+        TaskList.classList.add('blur');
+        document.getElementById('header').classList.add('blur');
+        document.getElementById('footer').classList.add('blur');
+        document.getElementById('TaskInput').classList.add('blur');
+    }
+    else {
+        TaskList.classList.remove('blur');
+        document.getElementById('header').classList.remove('blur');
+        document.getElementById('footer').classList.remove('blur');
+        document.getElementById('TaskInput').classList.remove('blur');
+    }
+}

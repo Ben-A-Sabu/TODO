@@ -23,6 +23,12 @@ body {
     overscroll-behavior: none;
     user-select: none;
     height: 100vh;
+    background-color: var(--bgdcolor);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
 }
 
 .row {
@@ -30,19 +36,15 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
 }
 
-
 .button {
-    height: 5vh;
-    width: 15vw;
-    max-width: 200px;
-    max-height: 250px;
-    font-weight: 200;
+    height: clamp(3rem, 5vh, 3rem);
+    width: clamp(7rem, 10vw, 15rem);
     box-shadow: #8fd49f 3px 3px 3px;
     border: 1px solid rgb(111, 194, 144);
     background-color: rgba(22, 158, 119, 0.869);
-    font-size: clamp(1.5rem, 5vw, 2rem);
     cursor: pointer;
     border-radius: var(--bordrad);
 }
@@ -55,40 +57,76 @@ body {
 
 /* general css used */
 
+/*Major blocks css*/
+
+/*//////header//////*/
 #header {
+    height: 10vh;
+    width: 100vw;
     background-color: var(--bgdcolor);
-    text-align: center;
     font-size: var(--fontsize);
     font-weight: var(--fontwgt);
-    color: #fbf4f4;
-    border: 1px solid #ccc;
-    height: 10vh;
-    line-height: 2;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/*//////taskInput/////*/
+#TaskInput {
+    height: 15vh;
+    width: clamp(800px, 80vw, 1000px);
     border-radius: var(--bordrad);
 }
 
-#homebtn {
-    height: 4vh;
-    width: 4vh;
+/*///////tasklist/////*/
+#tasklist {
+    height: 60vh;
+    width: clamp(800px, 50vw, 1600px);
+    border-radius: var(--bordrad);
+    background-color: var(--bgdcolor);
+}
+
+/*///////footer//////*/
+#footer {
+    background-color: var(--bgdcolor);
+    height: 10vh;
+    width: 100vw;
+}
+
+
+
+
+/*///// css of elements in #header///////*/
+
+/*/////// #homebtn #infobtn /////*/
+#homebtn,
+#infobtn {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: var(--fontwgt);
+    color: #f0eded;
+    height: 5vh;
+    width: 5vh;
     border-radius: 50px;
     cursor: pointer;
-    display: flex;
-    position: absolute;
-    right: 1vh;
-    top: 1vh;
-}
-
-#TaskInput {
-    height: 10vh;
-    background-color: var(--bgdcolor);
-    margin: 1px;
-    text-align: center;
-    border-radius: var(--bordrad);
 
 }
+
+/*//// #mainheading//////*/
+#MainHeading {
+    background-color: transparent;
+}
+
+/*///// css of elements in #TaskInput///////*/
+
+/*/////// #ipbox  #ctrlbox ///////*/
+#ipbox,
+#ctrlbox {
+    width: 80%;
+    height: 100%;
+}
+
+/*/////// .inputbox ///////*/
 
 .Inputbox {
-
     font-size: var(--fontsize);
     font-weight: var(--fontwgt);
     color: #333;
@@ -96,20 +134,17 @@ body {
     background-color: rgba(223, 220, 220, 0.857);
     border-radius: var(--bordrad);
     padding: 10px;
-    width: 20vw;
+    width: 40%;
+    height: 40%;
 
 }
 
-#tasklist {
-    height: 65vh;
-    border: 1px solid #ccc;
-    background-color: var(--bgdcolor);
-    margin: 1px;
-}
 
-#taskHeading {
+/*///// css of elements in #tasklist///////*/
+
+/*//////.Heading/////*/
+.Heading {
     font-size: 150%;
-    font-weight: var(--fontwgt);
     color: #f0eded;
     background-color: rgba(7, 7, 7, 0.859);
     text-align: center;
@@ -117,95 +152,86 @@ body {
     border-radius: var(--bordrad);
 }
 
-
+/*//////.task/////*/
 .task {
+    height: 10vh;
+    width: 90%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-around;
     font-weight: var(--fontwgt);
     border-radius: var(--bordrad);
-    background-color: rgba(5, 4, 4, 0.219);
-    margin: 1vh;
+    background-color: rgba(79, 79, 79, 0.219);
+    margin-top: 1vh;
+    color: #f0eded;
+    font-size: clamp(1.5rem, 130%, 0.75rem);
 }
 
-.task>div {
-    flex: 1;
-    color: #f9f5f5;
-}
-
-.todo {
-    font-size: 100%;
-    padding: 10px;
-}
-
-#today h3,
-#Missed h3,
-#upcoming h3,
-#completed h3 {
-    font-size: 150%;
-    font-weight: var(--fontwgt);
-    color: #f8f6f6;
-    background-color: rgba(14, 13, 13, 0.855);
-    text-align: center;
-    line-height: 2;
-    margin: 1vh;
-    border-radius: var(--bordrad);
-}
-
+/*///// #today #upcoming////*/
 #today,
-#upcoming,
+#upcoming {
+    height: 30vh;
+
+}
+
+/*///// #missed #completed////*/
 #Missed,
 #completed {
-    height: 30vh;
-    overflow: auto;
-}
-
-#Missed {
     display: none;
+    height: 60vh;
 }
 
-#completed {
-    display: none;
+/*//////////.todo////////*/
+.todo {
+    width: 70%;
+    display: flex;
 }
 
-#footer {
-    background-color: var(--bgdcolor);
-    text-align: center;
-    border: 1px solid #ccc;
-    height: 14vh;
-    margin: 1px;
-    border-radius: var(--bordrad);
+.todo div:nth-child(1) {
+    width: 80%;
+    text-align: left;
 }
+
+.todo div:nth-child(2) {
+    width: 20%;
+    font-size: 50%;
+    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.container {
+    height: 80%;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 
 
 .count {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: clamp(1rem, 1vw, .75rem);
-    font-weight: var(--fontwgt);
     color: #fffbfb;
     border-radius: var(--bordrad);
-    padding: 5px;
     max-width: 200px;
     max-height: 250px;
 
 }
 
 .action {
-    height: 4vh;
-    font-size: clamp(1rem, 1vw, 2rem);
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
+    padding: 10px;
+    width: clamp(40px, 20vw, 90px);
+    font-size: clamp(0.75rem, 130%, 1rem);
+    background-color: #000000;
     border: none;
-    margin-left: 1vw;
-    margin-right: 1vw;
-    border-radius: var(--bordrad);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -213,4 +239,106 @@ body {
     box-shadow: #8fd49f 3px 3px 3px;
     border: 1px solid rgb(111, 194, 144);
     background-color: rgba(22, 158, 119, 0.869);
+}
+
+@media screen and (max-width: 800px) {
+
+    #taskEnter,
+    #TaskDate {
+        width: 90%
+    }
+
+    #ipbox,
+    #ctrlbox {
+        flex-direction: column;
+        height: 15vh;
+        width: 100%;
+    }
+
+    #ctrlbox .button {
+        height: clamp(2rem, 5vh, 3rem);
+        width: clamp(4rem, 10vw, 15rem);
+    }
+
+    #TaskInput {
+        flex-direction: row;
+        width: 90%;
+    }
+
+    #tasklist {
+        height: 60%;
+        width: 100vw;
+        border-radius: 0px;
+    }
+
+    .todo {
+        font-size: clamp(1rem, 1vw, .75rem);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.menu {
+    position: relative;
+    text-align: center;
+    /* Needed to position the menu-actions element */
+}
+
+.menu-icon {
+    cursor: pointer;
+    width: clamp(30px, 20vw, 40px);
+    height: clamp(30px, 20vw, 40px);
+    border-radius: 50px;
+    color: #fff;
+    background-color: #252424;
+
+}
+
+.menu-actions {
+    position: absolute;
+    /* Position the menu-actions element */
+    top: 120%;
+    right: 0;
+    z-index: 1;
+}
+
+#infobtn {
+    position: relative;
+}
+
+
+#infobtn:hover::after {
+    text-align: left;
+    content: "1) To add, click Add button  \A 2) To delete click Delete button";
+    position: absolute;
+    top: 100%;
+    right: 100%;
+    background-color: #0f9159;
+    color: #fff;
+    border-radius: 15px;
+    width: 500px;
+    white-space: pre-wrap;
+    padding: 20px;
+    z-index: 10;
+    line-height: 5vh;
+}
+
+#Errorpopup {
+    height: 20vh;
+    font-size: clamp(1rem, 1vw, .75rem);
+    width: clamp(300px, 80vw, 500px);
+    color: rgb(248, 248, 248);
+    background-color: rgba(0, 0, 0, 0.473);
+    border-radius: var(--bordrad);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.blur {
+    filter: blur(5px);
 }
