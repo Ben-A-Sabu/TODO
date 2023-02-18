@@ -53,13 +53,50 @@ window.addEventListener('load', function () {
     });
 
     id = JSON.parse(localStorage.getItem('lastId')) || 0;
-
     displayFromLocalStorage();
     findcurrentdate();
     updateNotification();
     Taskdate.value = currentdate;
 
 });
+
+function setmenubtns() {
+    var menubtns = document.getElementsByClassName('menu')
+    for (var i = 0; i < menubtns.length; i++) {
+        menubtns[i].addEventListener('click', function () {
+            console.log('clicked + ' + this.parentElement.id);
+            var menuoptns = this.parentElement.getElementsByClassName('menu')[0].getElementsByClassName('menu-actions')[0];
+            console.log(menuoptns);
+            menuoptns.classList.toggle('hidden');
+
+            var editbtn = menuoptns.getElementsByClassName('action')[1];
+            var deletebtn = menuoptns.getElementsByClassName('action')[0];
+            var cmpltbtn = menuoptns.getElementsByClassName('action')[2];
+            var undobtn = menuoptns.getElementsByClassName('action')[3];/*not working */
+            var taskid = this.parentElement.id;
+
+            editbtn.addEventListener('click', function () {
+                editpopup(taskid);
+            });
+
+            deletebtn.addEventListener('click', function () {
+                RemoveFromLocalStorage(taskid)
+            })
+
+            cmpltbtn.addEventListener('click', function () {
+                updateStatus(taskid, 'completed');
+
+            });
+
+            /*  undobtn.addEventListener('click', function () {
+                  updateStatus(taskid, 'notdone')
+              })*/
+
+        });
+
+
+    }
+}
 
 // function to displa current date
 function findcurrentdate() {
@@ -122,33 +159,9 @@ Addbtn.addEventListener('click', function () {
     Taskdate.value = currentdate;
 });
 /// action that can be performed (ie, edit, delete, complete)
-document.addEventListener('click', function (e) {
-    // Get a reference to the menu-icon element
-    const menuIcon = e.target;
-    // Get a reference to the menu-actions element
-    const menuActions = menuIcon.parentNode.querySelector('.menu-actions');
-    if (menuActions) {
-        // Toggle the hidden class on the menu-actions element
-        menuActions.classList.toggle('hidden');
-        menuActions.addEventListener('click', function (e) {
-            elementid = e.target.parentElement.parentElement.parentElement.id
-            if (e.target.id === 'deletebtn') {
-                RemoveFromLocalStorage(elementid);
-            }
-            if (e.target.id === 'editbtn') {
-                editpopup(elementid);
-            }
-            if (e.target.id === 'cmpltbtn') {
-                updateStatus(elementid, 'completed');
-            }
-            if (e.target.id == 'addbackbtn') {
-                updateStatus(elementid, 'notdone');
-            }
 
-        });
-    }
 
-});
+
 //// add to local storage function 
 function AddToLocalStorage(task, date, id) {
     let taskObj = {
@@ -216,6 +229,7 @@ function displayFromLocalStorage() {
             RemoveFromLocalStorage(task.id);
         }
     });
+    setmenubtns();
 
 }
 // edit from local storage function

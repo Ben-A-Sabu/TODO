@@ -316,7 +316,7 @@ body {
 
 #infobtn:hover::after {
     text-align: left;
-    content: "1) To add, click Add button  \A 2) To delete click Delete button";
+    content: " simple todo app is a digital tool designed to help you keep track of tasks and to-dos in a straightforward and intuitive way. The app allows you to create a list of tasks, each with its own description, due date, and status. You can add new tasks, mark tasks as completed, and delete tasks that are no longer relevant.";
     position: absolute;
     top: 100%;
     right: 100%;
