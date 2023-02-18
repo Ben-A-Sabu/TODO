@@ -202,8 +202,7 @@ body {
     align-items: center;
 }
 
-
-
+/*////.container//////*/
 .container {
     height: 80%;
     overflow-x: scroll;
@@ -212,9 +211,7 @@ body {
     align-items: center;
 }
 
-
-
-
+/*//////.count//////*/
 .count {
     color: #fffbfb;
     border-radius: var(--bordrad);
@@ -223,6 +220,7 @@ body {
 
 }
 
+/*//////.action//////*/
 .action {
     padding: 10px;
     width: clamp(40px, 20vw, 90px);
@@ -234,13 +232,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-
+/*//////.action:hover//////*/
 .action:hover {
     box-shadow: #8fd49f 3px 3px 3px;
     border: 1px solid rgb(111, 194, 144);
     background-color: rgba(22, 158, 119, 0.869);
 }
 
+/*//////media queries/////*/
 @media screen and (max-width: 800px) {
 
     #taskEnter,
@@ -266,8 +265,6 @@ body {
         width: 90%;
     }
 
-
-
     #tasklist {
         height: 60%;
         width: 100vw;
@@ -279,16 +276,19 @@ body {
     }
 }
 
+/*//////.hidden//////*/
 .hidden {
     display: none;
 }
 
+/*//////.menu//////*/
 .menu {
     position: relative;
     text-align: center;
     /* Needed to position the menu-actions element */
 }
 
+/*///// menu-icon/////*/
 .menu-icon {
     cursor: pointer;
     width: clamp(30px, 20vw, 40px);
@@ -299,6 +299,7 @@ body {
 
 }
 
+/*menu-actions*/
 .menu-actions {
     position: absolute;
     /* Position the menu-actions element */
@@ -307,6 +308,7 @@ body {
     z-index: 1;
 }
 
+/*info btn*/
 #infobtn {
     position: relative;
 }
@@ -328,6 +330,7 @@ body {
     line-height: 5vh;
 }
 
+/*popup*/
 .popup {
     height: 30vh;
     font-size: clamp(1rem, 1vw, .75rem);
