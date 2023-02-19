@@ -157,6 +157,7 @@ Addbtn.addEventListener('click', function () {
     }
     Inputbox.value = '';
     Taskdate.value = currentdate;
+    location.reload();
 });
 /// action that can be performed (ie, edit, delete, complete)
 
