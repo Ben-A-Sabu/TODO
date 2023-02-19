@@ -274,6 +274,11 @@ body {
     .todo {
         font-size: clamp(1rem, 1vw, .75rem);
     }
+
+    #infobtn:hover::after {
+        font-size: 1rem;
+
+    }
 }
 
 /*//////.hidden//////*/
@@ -319,11 +324,11 @@ body {
     content: " simple todo app is a digital tool designed to help you keep track of tasks and to-dos in a straightforward and intuitive way. The app allows you to create a list of tasks, each with its own description, due date, and status. You can add new tasks, mark tasks as completed, and delete tasks that are no longer relevant.";
     position: absolute;
     top: 100%;
-    right: 100%;
+    right: 50%;
     background-color: #0f9159;
     color: #fff;
     border-radius: 15px;
-    width: 500px;
+    width: clamp(200px, 80vw, 500px);
     white-space: pre-wrap;
     padding: 20px;
     z-index: 10;
